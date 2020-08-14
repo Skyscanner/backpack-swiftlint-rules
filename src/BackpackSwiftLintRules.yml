@@ -49,16 +49,16 @@ custom_rules:
 
   bpk_use_size_token:
     name: "Prefer Backpack tokens to hard-coded numbers"
-    regex: "(?:(?:cornerRadius|spacing)\\s*=\\s*([1-9]+)$|constrain.*constant\\s*:\\s*([1-9]+))"
+    regex: "(?:(?:cornerRadius|spacing)\\s*=\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)$|constrain.*?constant\\s*:\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)\\s*\\))"
     message: "Use a size or radius token from Backpack instead of a hard-coded number."
     severity: warning # default is warning
-    # Try it out at https://regex101.com/r/a2znCq/2
+    # Try it out at https://regex101.com/r/a2znCq/17
 
   # Colour token rules
 
   bpk_use_colour_token:
     name: "Prefer Backpack colour tokens to UIColors"
-    regex: "(?:Color|color)\\s+=.*(UIColor)"
+    regex: "(?:(?:Color|color)\\s+=\\s+(UIColor)|Variant\\s*\\:\\s*(UIColor))"
     message: "Use a colour token from Backpack instead of a UIColor."
     severity: warning # default is warning
-    # Try it out at https://regex101.com/r/3NOwYr/4
+    # Try it out at https://regex101.com/r/3NOwYr/13
