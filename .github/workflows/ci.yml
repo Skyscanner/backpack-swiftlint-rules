@@ -21,5 +21,8 @@ jobs:
           echo "github_ref ${{ github.ref }}"
           echo "github_event_name ${{ github.event_name }}"
 
+      - name: set up
+        run: npm ci
+
       - name: test
-        run: swift test
+        run: npm run test

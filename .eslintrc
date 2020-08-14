@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["skyscanner"],
+  "plugins": [],
+  "env": {
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".json"]
+      }
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/jsx-filename-extension": "off",
+    "import/no-extraneous-dependencies": "off"
+  }
+}
