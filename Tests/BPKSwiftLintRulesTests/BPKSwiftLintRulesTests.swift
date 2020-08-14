@@ -6,7 +6,7 @@ final class BPKSwiftLintRulesTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(BPKSwiftLintRules().text, "Hello, World!")
+        XCTAssertEqual(BPKSwiftLintRules().text, "Hello world!")
     }
 
     static var allTests = [
