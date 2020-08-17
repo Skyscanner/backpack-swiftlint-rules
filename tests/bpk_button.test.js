@@ -1,12 +1,12 @@
-import { customRules } from "../src";
+import { customRules, cloneRegExp } from "../src";
 
 describe("bpk_button rule tests", () => {
   let testRegex;
 
-  beforeAll(() => {
+  beforeEach(() => {
     expect(customRules["bpk_button"]).toBeTruthy();
 
-    testRegex = customRules["bpk_button"].regex;
+    testRegex = cloneRegExp(customRules["bpk_button"].regex);
   });
 
   it("UIButton variable is not violation", () => {

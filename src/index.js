@@ -27,5 +27,7 @@ if (doc && doc["custom_rules"]) {
   });
 }
 
+const cloneRegExp = (regex) => new RegExp(regex.source, regex.flags);
+
 export default doc;
-export { doc, customRules };
+export { doc, customRules, cloneRegExp };

@@ -1,12 +1,12 @@
-import { customRules } from "../src";
+import { customRules, cloneRegExp } from "../src";
 
 describe("bpk_use_size_token assignment rule tests", () => {
   let testRegex;
 
-  beforeAll(() => {
+  beforeEach(() => {
     expect(customRules["bpk_use_size_token"]).toBeTruthy();
 
-    testRegex = customRules["bpk_use_size_token"].regex;
+    testRegex = cloneRegExp(customRules["bpk_use_size_token"].regex);
   });
 
   it("UIProgressBar.progress value assignment is not violation", () => {
@@ -54,5 +54,32 @@ describe("bpk_use_size_token assignment rule tests", () => {
     expect(match.length > 1).toBeTruthy();
     expect(match[0]).toBe("spacing = 44");
     expect(match[1]).toBe("44");
+  });
+
+  it("spacing value assignment is violation if it uses float with decimal", () => {
+    const match = testRegex.exec("grid.spacing = 44.0");
+
+    expect(match).toBeTruthy();
+    expect(match.length > 1).toBeTruthy();
+    expect(match[0]).toBe("spacing = 44.0");
+    expect(match[1]).toBe("44.0");
+  });
+
+  it("spacing value assignment is violation if it uses product of floats", () => {
+    const match = testRegex.exec("grid.spacing = 4 * 5");
+
+    expect(match).toBeTruthy();
+    expect(match.length > 1).toBeTruthy();
+    expect(match[0]).toBe("spacing = 4 * 5");
+    expect(match[1]).toBe("5");
+  });
+
+  it("spacing value assignment is violation if it uses product of floats with decimals", () => {
+    const match = testRegex.exec("grid.spacing = 4.9 * 5.0");
+
+    expect(match).toBeTruthy();
+    expect(match.length > 1).toBeTruthy();
+    expect(match[0]).toBe("spacing = 4.9 * 5.0");
+    expect(match[1]).toBe("5.0");
   });
 });
