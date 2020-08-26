@@ -49,7 +49,7 @@ custom_rules:
 
   bpk_use_size_token:
     name: "Prefer Backpack tokens to hard-coded numbers"
-    regex: "(?:(?:cornerRadius|spacing)\\s*=\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)$|constrain.*?constant\\s*:\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)\\s*\\))"
+    regex: "(?:(?:cornerRadius|spacing|borderWidth)\\s*=\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)$|constrain[a-zA-Z\\(\\s\\:\\.\\,]+constant\\s*:\\s*\\-?\\s*(?:[0-9\\.]+\\s*\\*\\s*)*([1-9]+(?:\\.[0-9]+)?)\\s*\\))"
     message: "Use a size or radius token from Backpack instead of a hard-coded number."
     severity: warning # default is warning
     # Try it out at https://regex101.com/r/a2znCq/17

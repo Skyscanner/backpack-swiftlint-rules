@@ -25,6 +25,14 @@ describe("bpk_use_size_token constraint rule tests", () => {
     expect(match).toBeFalsy();
   });
 
+  it("Constraint constant is not violation if it uses negative backpack", () => {
+    const match = testRegex.exec(
+      "self.topAnchor.constraint(equalTo: contentView.topAnchor, constant: -BPKSpacingBase)"
+    );
+
+    expect(match).toBeFalsy();
+  });
+
   it("Constraint constant is not violation if it uses multiple of Backpack", () => {
     const match = testRegex.exec(
       "self.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 4 * BPKSpacingBase)"
@@ -65,6 +73,19 @@ describe("bpk_use_size_token constraint rule tests", () => {
   it("Constraint constant is violation if it uses float", () => {
     const match = testRegex.exec(
       "self.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45)"
+    );
+
+    expect(match).toBeTruthy();
+    expect(match.length > 2).toBeTruthy();
+    expect(match[0]).toBe(
+      "constraint(equalTo: contentView.topAnchor, constant: 45)"
+    );
+    expect(match[2]).toBe("45");
+  });
+
+  it("Constraint constant is violation if it uses float across multiple lines", () => {
+    const match = testRegex.exec(
+      "self.topAnchor.constraint(equalTo: contentView.topAnchor, constant: BPKSpacingBase),\nself.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 45)"
     );
 
     expect(match).toBeTruthy();
